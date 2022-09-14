@@ -38,15 +38,13 @@ app.post('/login', async (req,res)=>{
         let Pass = req.body.password;
 
         if(User && Pass) {
-            data_con.query('SELECT * from Accounts where enroll_id = ? AND password = ?',[enroll_id,Pass],function(err,result,fields){
+            await data_con.query('SELECT * from Accounts where enroll_id = ? AND password = ?',[enroll_id,Pass],function(err,result,fields){
                 if(err) throw err;
                 if(result.length != 0) {
-                    res.redirect('/home')
+                    res.send('<script>alert("Success !!");</script>')
                 } else {
                     res.send('<script>alert("Invalid Creds !!!!");</sctipt>')
                 }
-
-                res.end();
             });
         } else {
             res.sendStatus(401).sendDate('<script>alert("Creds Required !!!!");</script>');
@@ -66,7 +64,7 @@ app.post('/signup', async (req,res)=> {
         if(err) throw err;
 
         //query
-        const searchQ = mysql.format("SELECT * FROM Accounts WHERE enroll_id = ?",[enroll_id])
+        const searchQ = await mysql.format("SELECT * FROM Accounts WHERE enroll_id = ?",[enroll_id])
         await con.query(searchQ, async(err,result)=>{
             if(err) throw err;
             if(result.length != 0) {
@@ -77,14 +75,13 @@ app.post('/signup', async (req,res)=> {
                 await con.query(insertQ,(err,result)=>{
                     con.release()
                     if(err) throw err;
-                    res.sendStatus(201).send('<script>alert("Registered !!!!")</script>')
-                    res.redirect('/')
+                    return res.sendStatus(201).send('<script>alert("Registered !!!!")</script>').redirect('/');
                 })
             }
         })
     })
 })
 
-app.all('*',(req,res)=>{
-    res.status(404).send("<h1>Oops , Page Not Found !!!</h1>")
+app.all('*',async (req,res)=>{
+    return res.status(404).send("<h1>Oops , Page Not Found !!!</h1>")
 })
