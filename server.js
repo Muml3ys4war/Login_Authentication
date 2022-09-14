@@ -40,7 +40,7 @@ app.post('/login', async (req,res)=>{
         if(User && Pass) {
             data_con.query('SELECT * from Accounts where enroll_id = ? AND password = ?',[enroll_id,Pass],function(err,result,fields){
                 if(err) throw err;
-                if(result.length > 0) {
+                if(result.length != 0) {
                     res.redirect('/home')
                 } else {
                     res.send('<script>alert("Invalid Creds !!!!");</sctipt>')
@@ -73,7 +73,7 @@ app.post('/signup', async (req,res)=> {
                 con.release();
                 res.sendStatus(409).send('<script>alert("User Exists !!!");</script>')
             } else {
-                const insertQ = mysql.format("INSERT INTO Accounts VALUES (0,?,?,?)",[user,password,enroll_id])
+                const insertQ = mysql.format("INSERT INTO Accounts VALUES (?,?,?)",[enroll_id,user,password])
                 await con.query(insertQ,(err,result)=>{
                     con.release()
                     if(err) throw err;
