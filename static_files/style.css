@@ -1,0 +1,172 @@
+@import url();
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+html,body {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    background-image: url(./Back.png);
+}
+
+::selection{
+    background: #4158d0;
+    color: #fff;
+}
+
+.wrapper {
+    width: 350px;
+    height: 520px;
+    margin-left: 689px;
+    background: #fff;
+    border-radius: 15px;
+    border: 5px transparent #4158d0;
+    box-shadow: 0px 15px 20px rbga(0,0,0,0.1);
+}
+
+.wrapper .title {
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
+    user-select: none;
+    border-radius: 15px 15px 0 0;
+    background: linear-gradient(-135deg,#c850c0,#4158d0);
+}
+
+.wrapper form {
+    padding: 10px 30px 50px 30px;
+}
+
+.wrapper form .field {
+    height: 50px;
+    width : 100%;
+    margin-top: 20px;
+    position: relative;
+}
+
+.wrapper form .field input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 17px;
+    padding-left: 20px;
+    border: 1px solid lightgray;
+    border-radius:  25px;
+    transition: all 0.3s ease;
+}
+
+.wrapper form .field input:focus,
+form .field input:valid {
+    border-color: #4158d0;
+}
+
+.wrapper form .field label {
+    position: absolute;
+    top: 50% ;
+    left: 20px;
+    color: #999999;
+    font-weight: 400;
+    font-size: 17px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+form .field input:focus ~label, form .field input:valid ~ label{
+    top: 0%;
+    font-size: 16px;
+    color: #4158d0;
+    background: #fff;
+    transform: translateY(-50%);
+
+    animation-name: shake, glow-red;
+    animation-duration: 0.04s, 0.005s;
+    animation-iteration-count: 1, 2;
+}
+
+form .content {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+form .content input {
+    width: 15px;
+    height:  15px;
+    background: red;
+}
+
+form .content label {
+    color: #262626;
+    user-select: none;
+    padding-left: 5px;
+}
+
+form .field input[type="submit"] {
+    color: #fff;
+    border: none;
+    padding-left: 0;
+    margin-top: -10%;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    background: linear-gradient(-135deg,#c850c0,#4158d0);
+    transition: all 0.3s ease;
+}
+
+form .field input[type="submit"]:active {
+    transform: scale(0.95);
+}
+
+.signup_link{
+    margin: auto;
+    text-align: center;
+    font-size: 16px;
+    color: #262626;
+}
+
+.signup_link a{
+    color: #2691d9;
+    text-decoration: none;
+}
+
+form .signup_link a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    position: fixed;
+    left: 0;
+    top: 10px;
+    width: 29%;
+}
+
+@keyframes shake {
+    0%, 20%, 40%, 60%, 80% {
+        transform: translateX(1px);
+      }
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: translateX(-1px);
+    }
+}
+    
+@keyframes glow-red {
+    50% {
+      border-color: indianred;
+    }
+}

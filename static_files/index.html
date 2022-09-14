@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <img class="logo" src="logo.png" alt="thumbnail">
+        <div class="wrapper">
+            <div class="title">Welcome</div>
+            
+            <form action="/login" method="post">
+                <div class="field">
+                    <input type="text" name="enroll_id" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="field">
+                    <input type="password" name="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>
+            
+                <div class="content">
+                    <div class="field">
+                        <input type="submit" value="submit">
+                    </div>
+                </div>
+                
+                <div class="signup_link">
+                    Not On Board?
+                    <a href="registration.html">Hop in</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
