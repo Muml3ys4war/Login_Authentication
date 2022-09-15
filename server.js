@@ -41,9 +41,9 @@ app.post('/login', async (req,res)=>{
             await data_con.query('SELECT * from Accounts where enroll_id = ? AND password = ?',[enroll_id,Pass],function(err,result,fields){
                 if(err) throw err;
                 if(result.length != 0) {
-                    res.send('<script>alert("Success !!");</script>')
+                    res.send('<script>alert("Success !!");window.location.href="/home.html"</script>')
                 } else {
-                    res.send('<script>alert("Invalid Creds !!!!");</sctipt>')
+                    res.send('<script>alert("Invalid Creds !!!!");window.location.href="/"</sctipt>')
                 }
             });
         } else {
@@ -75,7 +75,7 @@ app.post('/signup', async (req,res)=> {
                 await con.query(insertQ,(err,result)=>{
                     con.release()
                     if(err) throw err;
-                    return res.sendStatus(201).send('<script>alert("Registered !!!!")</script>').redirect('/');
+                    return res.sendStatus(201).send('<script>alert("Registered !!!!");window.location.href="/"</script>');
                 })
             }
         })
